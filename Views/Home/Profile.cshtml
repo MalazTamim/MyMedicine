@@ -1,0 +1,149 @@
+@model List<MyMedicine.Models.med>
+
+<div style="text-align: right"> <a asp-controller="Home" asp-action="SignOut">  <button type="button" class="btn btn-info ">Sign Out</button>  </a></div>
+
+
+
+@* <h1> My Posts:</h1> *@
+
+   @if(Model.Count!=0){
+        <strong> <h3> Welcome @Model[0].UserName </h3> </strong>
+   }
+   
+   @* <div class="main-container">
+        <div class="heading">
+            <h3 class="heading__title">My Posts:</h3>
+        </div> *@
+
+
+     @if(Model.Count!=0){
+        <div class="main-container">
+
+
+        <div class="heading">
+            <h3 class="heading__title">My Posts:</h3>
+        </div>
+
+        </div>
+
+
+     }
+
+     else{
+        <strong> <h3 style="text-align: center;"> No posts yet </h3> </strong>
+
+     }
+
+    
+   
+    @foreach (med m in Model)
+    {
+        
+
+        <div class="card  mx-auto w-75 h-20 mt-3 bg-info" >
+            @* <img class="card-img-top" src="/Users/KarimArakji/Desktop/paandol.jpeg" alt="Card image cap"> *@
+
+                <div class="medicineName">Posted By: <span class="username"> @m.UserName </span>
+
+                <span class="date float-right"> at @DateTime.Today.ToString("dd/MM/yyyy")</span>
+
+
+                </div>
+
+                    
+
+                @* </p> *@
+
+                <h2 class="card__title medName">@m.Name</h2>
+                @* <h5 class="card-title medName">@m.Name</h5> *@
+                @* <p class="card-text lightGray">
+                    <span class="characteristic lightGray">Dosage: </span><span class="dosageValue lightGray">@m.Dosage</span>
+                    <br>
+                    <span class="characteristic lightGray">Address: </span><span class=" lightGray">@m.Address</span> *@
+
+
+                <h4 class="card__apply">Dosage: <span class="dosageInfo"> @m.Dosage </span> <br> Address <span class="additionalInfo">   @m.Address </span> 
+                
+
+                @if(m.Urgency==true){
+                    <p class="text-danger mt-2"> This request is urgent!</p>
+                } else{
+                    <p class="mt-2"> This request is not very urgent</p>
+                }
+                
+                @if (m.ArrivalDate==DateTime.Now.Date){
+                <span class="characteristic lightGray mt-2">Arrival Date: </span> <span class="dosageInfo lightGray"> Not provided yet</span>
+                    
+                }
+                else{
+                <span class="characteristic lightGray mt-2">Arrival Date: </span> <span class="dosageInfo lightGray"> @m.ArrivalDate.ToString("dd/MM/yyyy")</span>
+
+                }
+
+
+                    <br>
+                    <span class="characteristic lightGray">Destination: </span> <span class=" additionalInfo lightGray"> @m.Destination</span>
+                    <br>
+                    <span class="characteristic lightGray">Phone Number: </span> <span class=" additionalInfo lightGray"> @m.UserPhoneNumber</span>
+                </h4>
+
+                @* </p> *@
+
+                @* <p class="card-text lightGray">
+                    <span class="characteristic lightGray">Arrival Date: </span><span class="dosageValue lightGray"> Not provided yet.</span>
+                    <br>
+                    <span class="characteristic lightGray">Destination: </span><span class=" lightGray"> Not provided yet.</span>
+
+                </p> *@
+                
+                
+                @* <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                  
+                  
+                       <a asp-action="Delete" asp-controller="Home" asp-route-id="@m.Id"><button type="button" class="btn btn-info float-right"> Delete </button></a>
+                    </div>
+                    <div class="col-sm">
+                   
+                    </div>
+                    
+                </div>
+                </div> *@
+
+
+            <div class="container">
+                <div class="row mt-2 col-lg-4 col-md-8">
+                    <div class="col-lg-4 col-md-2 mr-3 ">
+                  
+                  
+                       <a asp-action="Delete" asp-controller="Home" asp-route-id="@m.Id"><button type="button" class="btn btn-light float-right"> <h4>Delete</h4>  </button></a>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-2">
+                    <a asp-action="EditPost" asp-controller="Home" asp-route-id="@m.Id"><button type="button" class="btn btn-light float-right"> <h4>Edit</h4>  </button></a>
+                    </div>
+                    
+                </div>
+                </div>
+                
+               <div class="text-success float-right mb-2 mt-3">  <em> <h4> @m.handled  </h4>  </em> </div> 
+            
+               
+
+
+      
+                
+
+                
+                
+</div>
+    
+    
+            
+
+
+    
+    
+
+   }

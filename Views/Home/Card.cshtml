@@ -1,0 +1,91 @@
+@model List<MyMedicine.Models.med>
+
+<div class="main-container">
+        <div class="heading">
+            <h1 class="heading__title">Medications</h1>
+        </div>
+
+   <div style="text-align: right"> <a asp-controller="Home" asp-action="SignOut">  <button type="button" class="btn btn-info ">Sign Out</button>  </a></div>
+        @foreach (med m in Model)
+        {
+            
+        <div class="card bg-info mx-auto w-75 h-20 mt-3">
+            @* <img class="card-img-top" src="/Users/KarimArakji/Desktop/paandol.jpeg" alt="Card image cap"> *@
+
+                @* @{
+                    var a=m.userId;
+                private ApplicationDbContext _context;
+                HomeController(ApplicationDbContext context);
+                static var exist1 = await _context.users.Where(x => x.Id == a).FirstOrDefaultAsync();
+                } *@
+                
+                @* <p class="lightGray">Posted By: <span class="username"> @m.UserName </span> *@
+                <div class="medicineName">Posted By: <span class="username"> @m.UserName </span>
+
+                <span class="date float-right"> at @DateTime.Today.ToString("dd/MM/yyyy")</span>
+
+
+                </div>
+
+                    
+
+                @* </p> *@
+
+                <h2 class="card__title medName">@m.Name</h2>
+                @* <h5 class="card-title medName">@m.Name</h5> *@
+                @* <p class="card-text lightGray">
+                    <span class="characteristic lightGray">Dosage: </span><span class="dosageValue lightGray">@m.Dosage</span>
+                    <br>
+                    <span class="characteristic lightGray">Address: </span><span class=" lightGray">@m.Address</span> *@
+
+
+                <h4 class="card__apply">Dosage: <span class="dosageInfo">  @m.Dosage<span> mg</span> </span> 
+                 <br> Address: <span class="additionalInfo">   @m.Address  </span>  
+                
+
+                @if(m.Urgency==true){
+                    <p class="text-danger mt-2"> This request is urgent!</p>
+                } else{
+                    <p class="mt-2"> This request is not very urgent</p>
+                }
+                
+
+                @* <span class="characteristic lightGray mt-2">Arrival Date: </span> <span class="dosageInfo lightGray"> Not provided yet.</span>
+                    <br>
+                    <span class="characteristic lightGray">Destination: </span> <span class=" additionalInfo lightGray"> Not provided yet.</span> *@
+                </h4>
+
+                @* </p> *@
+
+                @* <p class="card-text lightGray">
+                    <span class="characteristic lightGray">Arrival Date: </span><span class="dosageValue lightGray"> Not provided yet.</span>
+                    <br>
+                    <span class="characteristic lightGray">Destination: </span><span class=" lightGray"> Not provided yet.</span>
+
+                </p> *@
+                
+                <div class="row"> 
+                    <a  asp-action="Edit" asp-controller="Home" asp-route-id="@m.Id">
+                        <button type="button" class="btn btn-light mb-2">Provide me! </button>
+                    </a>
+
+                    @* <a asp-action="Delete" asp-controller="Home" asp-route-id="@m.Id"><button type="button" class="btn btn-info float-right"> Delete </button></a> *@
+                    
+                            
+                      
+                   
+                </div>
+                <div class="text-success float-right mb-2">  <em> <h4> @m.handled  </h4>  </em> </div>  
+                
+      
+                
+
+                
+                
+</div>
+
+
+
+
+   }
+
